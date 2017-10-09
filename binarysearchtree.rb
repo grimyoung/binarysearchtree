@@ -42,5 +42,25 @@ module BinarySearchTree
         self.add_child(element)
       end
     end
+
+    # can this be optimized? might not need to search the entire tree for the target
+    def breadth_first_search(target)
+      queue = [self]
+      while ! queue.empty?
+        node = queue.shift
+        p node
+        if node.value == target
+          return true
+        else
+          if node.left_child != nil
+            queue = queue << node.left_child
+          end
+          if node.right_child != nil  
+            queue = queue << node.right_child
+          end
+        end
+      end
+      return false
+    end
   end
 end
