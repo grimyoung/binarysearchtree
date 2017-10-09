@@ -1,7 +1,7 @@
 module BinarySearchTree
   class Node
     attr_reader :value
-    attr_accessor :left_child, :right_child
+    attr_accessor :left_child, :right_child, :root
     def initialize(value = nil, left_child = nil, right_child = nil)
       @value = value
       @left_child = left_child
@@ -38,29 +38,35 @@ module BinarySearchTree
     end
 
     def build_tree(array)
-      array.each do |element|
-        self.add_child(element)
+      @root = Node.new(array[0])
+      array[1..-1].each do |element|
+        @root.add_child(element)
       end
     end
 
-    # can this be optimized? might not need to search the entire tree for the target
+    #can ignore left child if target is bigger than the value at node
+    #can ignore right child if target is lesser than the value at node
     def breadth_first_search(target)
-      queue = [self]
+      queue = [@root]
       while ! queue.empty?
         node = queue.shift
-        p node
         if node.value == target
-          return true
+          return node
         else
-          if node.left_child != nil
+          if node.value > target && node.left_child != nil
             queue = queue << node.left_child
           end
-          if node.right_child != nil  
+          if node.value < target && node.right_child != nil  
             queue = queue << node.right_child
           end
         end
       end
-      return false
+      return nil
+    end
+
+    def depth_first_search(target)
+      stack = [@root]
+
     end
   end
 end
