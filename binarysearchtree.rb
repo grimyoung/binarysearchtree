@@ -64,9 +64,23 @@ module BinarySearchTree
       return nil
     end
 
+    #preorder root left right
     def depth_first_search(target)
       stack = [@root]
-
+      while ! stack.empty?
+        node = stack.pop
+        if node.value == target
+          return node
+        else 
+          if node.value < target && node.right_child != nil
+            stack = stack << node.right_child
+          end
+          if node.value > target && node.left_child != nil
+            stack = stack << node.left_child
+          end
+        end
+      end
+      return nil
     end
   end
 end
