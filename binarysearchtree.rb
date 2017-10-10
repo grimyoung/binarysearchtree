@@ -97,7 +97,5 @@ module BinarySearchTree
         end
       end
     end
-
-
   end
 end
