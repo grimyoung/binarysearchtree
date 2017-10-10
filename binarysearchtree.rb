@@ -82,5 +82,22 @@ module BinarySearchTree
       end
       return nil
     end
+
+    def dfs_rec(node, target)
+      p node
+      if node == nil
+        return
+      elsif node.value == target
+        return node
+      else
+        if node.value > target
+          dfs_rec(node.left_child, target)
+        else
+          dfs_rec(node.right_child, target)
+        end
+      end
+    end
+
+
   end
 end
