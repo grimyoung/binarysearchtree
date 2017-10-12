@@ -22,18 +22,18 @@ module BinarySearchTree
     end
 
     def add_left(value)
-      if self.left_child == nil
-        self.left_child = Node.new(value)
+      if @left_child == nil
+        @left_child = Node.new(value)
       else
-        left_child.add_child(value)
+        @left_child.add_child(value)
       end
     end
 
     def add_right(value)
-      if self.right_child == nil
-        self.right_child = Node.new(value)
+      if @right_child == nil
+        @right_child = Node.new(value)
       else
-        right_child.add_child(value)
+        @right_child.add_child(value)
       end
     end
 
@@ -84,7 +84,6 @@ module BinarySearchTree
     end
 
     def dfs_rec(node, target)
-      p node
       if node == nil
         return
       elsif node.value == target
